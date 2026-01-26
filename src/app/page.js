@@ -33,70 +33,61 @@ const Counter = ({ end, duration = 2000, suffix = '' }) => {
   return <span>{count}{suffix}</span>;
 }
 
-// Animated Code Display
+// Character-by-Character Progressive Typing
 const CodeTyper = () => {
-  const [visibleLines, setVisibleLines] = useState(0);
-  const lines = [
-    { type: 'comment', content: '// building_brands_beyond.tsx' },
-    {
-      type: 'code', parts: [
-        { text: 'export default function ', color: 'text-[#ccb8b8]' },
-        { text: 'Success', color: 'text-[#facc15]' },
-        { text: '() {', color: 'text-[#ebd4d4]' }
-      ]
-    },
-    {
-      type: 'code', indent: true, parts: [
-        { text: 'const ', color: 'text-[#c678dd]' },
-        { text: 'vision ', color: 'text-[#61afef]' },
-        { text: '= ', color: 'text-[#56b6c2]' },
-        { text: "\'Limitless\'", color: 'text-[#98c379]' },
-        { text: ';', color: 'text-[#abb2bf]' }
-      ]
-    },
-    {
-      type: 'code', indent: true, parts: [
-        { text: 'return ', color: 'text-[#c678dd]' },
-        { text: '<DigitalExperience />', color: 'text-[#e06c75]' },
-        { text: ';', color: 'text-[#abb2bf]' }
-      ]
-    },
-    {
-      type: 'code', parts: [
-        { text: '}', color: 'text-[#ebd4d4]' }
-      ]
-    }
+  const [progress, setProgress] = useState(0);
+  const content = [
+    { text: '// building_brands_beyond.tsx', color: 'text-slate-500 opacity-60 italic text-xs block mb-4' },
+    { text: 'export default function ', color: 'text-[#ccb8b8]' },
+    { text: 'Success', color: 'text-[#facc15]' },
+    { text: '() {', color: 'text-[#ebd4d4]' },
+    { text: '\n  const ', color: 'text-[#c678dd]' },
+    { text: 'vision ', color: 'text-[#61afef]' },
+    { text: '= ', color: 'text-[#56b6c2]' },
+    { text: "'Limitless'", color: 'text-[#98c379]' },
+    { text: ';', color: 'text-[#abb2bf]' },
+    { text: '\n  return ', color: 'text-[#c678dd]' },
+    { text: '<DigitalExperience />', color: 'text-[#e06c75]' },
+    { text: ';', color: 'text-[#abb2bf]' },
+    { text: '\n}', color: 'text-[#ebd4d4]' }
   ];
 
+  const totalChars = content.reduce((acc, curr) => acc + curr.text.length, 0);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setVisibleLines((prev) => (prev < lines.length ? prev + 1 : prev));
-    }, 600);
-    return () => clearInterval(interval);
-  }, [lines.length]);
+    let currentPos = 0;
+    const typingInterval = setInterval(() => {
+      if (currentPos < totalChars) {
+        currentPos++;
+        setProgress(currentPos);
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 30); // Fast but visible typing speed
+
+    return () => clearInterval(typingInterval);
+  }, [totalChars]);
+
+  let charsCounted = 0;
 
   return (
     <div className="font-mono text-sm leading-relaxed pt-4">
-      {lines.map((line, idx) => (
-        <div
-          key={idx}
-          className={`transition-all duration-700 transform ${idx < visibleLines ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
-        >
-          {line.type === 'comment' ? (
-            <div className="text-slate-500 mb-4 font-medium italic font-mono text-xs tracking-wider opacity-60">
-              {line.content}
-            </div>
-          ) : (
-            <div className={`flex flex-row gap-1 font-bold ${line.indent ? 'pl-6' : ''} mb-1.5`}>
-              {line.parts.map((part, pIdx) => (
-                <span key={pIdx} className={part.color}>{part.text}</span>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-      {/* Blinking Cursor */}
-      <div className={`w-2 h-5 bg-orange-500/50 inline-block animate-pulse ml-1 ${visibleLines >= lines.length ? 'hidden' : ''}`} />
+      {content.map((segment, sIdx) => {
+        const start = charsCounted;
+        const end = charsCounted + segment.text.length;
+        charsCounted = end;
+
+        if (progress < start) return null;
+
+        const visibleText = segment.text.slice(0, progress - start);
+
+        return (
+          <span key={sIdx} className={`${segment.color} whitespace-pre`}>
+            {visibleText}
+          </span>
+        );
+      })}
+      <span className="w-2 h-5 bg-orange-500/50 inline-block animate-pulse ml-0.5 align-middle" />
     </div>
   );
 };
