@@ -33,41 +33,70 @@ const Counter = ({ end, duration = 2000, suffix = '' }) => {
   return <span>{count}{suffix}</span>;
 }
 
-// Static Code Display for Full Visibility
+// Animated Code Display
 const CodeTyper = () => {
+  const [visibleLines, setVisibleLines] = useState(0);
+  const lines = [
+    { type: 'comment', content: '// building_brands_beyond.tsx' },
+    {
+      type: 'code', parts: [
+        { text: 'export default function ', color: 'text-[#ccb8b8]' },
+        { text: 'Success', color: 'text-[#facc15]' },
+        { text: '() {', color: 'text-[#ebd4d4]' }
+      ]
+    },
+    {
+      type: 'code', indent: true, parts: [
+        { text: 'const ', color: 'text-[#c678dd]' },
+        { text: 'vision ', color: 'text-[#61afef]' },
+        { text: '= ', color: 'text-[#56b6c2]' },
+        { text: "\'Limitless\'", color: 'text-[#98c379]' },
+        { text: ';', color: 'text-[#abb2bf]' }
+      ]
+    },
+    {
+      type: 'code', indent: true, parts: [
+        { text: 'return ', color: 'text-[#c678dd]' },
+        { text: '<DigitalExperience />', color: 'text-[#e06c75]' },
+        { text: ';', color: 'text-[#abb2bf]' }
+      ]
+    },
+    {
+      type: 'code', parts: [
+        { text: '}', color: 'text-[#ebd4d4]' }
+      ]
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisibleLines((prev) => (prev < lines.length ? prev + 1 : prev));
+    }, 600);
+    return () => clearInterval(interval);
+  }, [lines.length]);
+
   return (
     <div className="font-mono text-sm leading-relaxed pt-4">
-      <div className="text-slate-500 mb-4 font-medium italic font-mono text-xs tracking-wider opacity-60">// building_brands_beyond.tsx</div>
-
-      <div className="flex flex-col gap-1.5 font-bold">
-        {/* Line 1 */}
-        <div>
-          <span className="text-[#ccb8b8]">export default function </span>
-          <span className="text-[#facc15] font-bold">Success</span>
-          <span className="text-[#ebd4d4]">() {'{'}</span>
+      {lines.map((line, idx) => (
+        <div
+          key={idx}
+          className={`transition-all duration-700 transform ${idx < visibleLines ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+        >
+          {line.type === 'comment' ? (
+            <div className="text-slate-500 mb-4 font-medium italic font-mono text-xs tracking-wider opacity-60">
+              {line.content}
+            </div>
+          ) : (
+            <div className={`flex flex-row gap-1 font-bold ${line.indent ? 'pl-6' : ''} mb-1.5`}>
+              {line.parts.map((part, pIdx) => (
+                <span key={pIdx} className={part.color}>{part.text}</span>
+              ))}
+            </div>
+          )}
         </div>
-
-        {/* Line 2 */}
-        <div className="pl-6">
-          <span className="text-[#c678dd]">const </span>
-          <span className="text-[#61afef]">vision </span>
-          <span className="text-[#56b6c2]">= </span>
-          <span className="text-[#98c379]">'Limitless'</span>
-          <span className="text-[#abb2bf]">;</span>
-        </div>
-
-        {/* Line 3 */}
-        <div className="pl-6">
-          <span className="text-[#c678dd]">return </span>
-          <span className="text-[#e06c75]">&lt;DigitalExperience /&gt;</span>
-          <span className="text-[#abb2bf]">;</span>
-        </div>
-
-        {/* Line 4 */}
-        <div>
-          <span className="text-[#ebd4d4]">{'}'}</span>
-        </div>
-      </div>
+      ))}
+      {/* Blinking Cursor */}
+      <div className={`w-2 h-5 bg-orange-500/50 inline-block animate-pulse ml-1 ${visibleLines >= lines.length ? 'hidden' : ''}`} />
     </div>
   );
 };
