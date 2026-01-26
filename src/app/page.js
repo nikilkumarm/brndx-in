@@ -33,9 +33,48 @@ const Counter = ({ end, duration = 2000, suffix = '' }) => {
   return <span>{count}{suffix}</span>;
 }
 
+// Reusable Typing Animation Component
+const TypingAnimation = ({ content, speed = 30 }) => {
+  const [progress, setProgress] = useState(0);
+  const totalChars = content.reduce((acc, curr) => acc + curr.text.length, 0);
+
+  useEffect(() => {
+    let currentPos = 0;
+    const typingInterval = setInterval(() => {
+      if (currentPos < totalChars) {
+        currentPos++;
+        setProgress(currentPos);
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, speed);
+
+    return () => clearInterval(typingInterval);
+  }, [totalChars, speed]);
+
+  let charsCounted = 0;
+
+  return (
+    <div className="font-mono leading-relaxed">
+      {content.map((segment, sIdx) => {
+        const start = charsCounted;
+        const end = charsCounted + segment.text.length;
+        charsCounted = end;
+        if (progress < start) return null;
+        const visibleText = segment.text.slice(0, progress - start);
+        return (
+          <span key={sIdx} className={`${segment.color} whitespace-pre-wrap`}>
+            {visibleText}
+          </span>
+        );
+      })}
+      <span className="w-2 h-5 bg-orange-500/50 inline-block animate-pulse ml-0.5 align-middle" />
+    </div>
+  );
+};
+
 // Character-by-Character Progressive Typing
 const CodeTyper = () => {
-  const [progress, setProgress] = useState(0);
   const content = [
     { text: '// building_brands_beyond.tsx', color: 'text-slate-500 opacity-60 italic text-xs block mb-4' },
     { text: 'export default function ', color: 'text-[#ccb8b8]' },
@@ -52,42 +91,9 @@ const CodeTyper = () => {
     { text: '\n}', color: 'text-[#ebd4d4]' }
   ];
 
-  const totalChars = content.reduce((acc, curr) => acc + curr.text.length, 0);
-
-  useEffect(() => {
-    let currentPos = 0;
-    const typingInterval = setInterval(() => {
-      if (currentPos < totalChars) {
-        currentPos++;
-        setProgress(currentPos);
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 30); // Fast but visible typing speed
-
-    return () => clearInterval(typingInterval);
-  }, [totalChars]);
-
-  let charsCounted = 0;
-
   return (
-    <div className="font-mono text-sm leading-relaxed pt-4">
-      {content.map((segment, sIdx) => {
-        const start = charsCounted;
-        const end = charsCounted + segment.text.length;
-        charsCounted = end;
-
-        if (progress < start) return null;
-
-        const visibleText = segment.text.slice(0, progress - start);
-
-        return (
-          <span key={sIdx} className={`${segment.color} whitespace-pre`}>
-            {visibleText}
-          </span>
-        );
-      })}
-      <span className="w-2 h-5 bg-orange-500/50 inline-block animate-pulse ml-0.5 align-middle" />
+    <div className="text-sm">
+      <TypingAnimation content={content} />
     </div>
   );
 };
@@ -300,10 +306,16 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                 </div>
-                <div className="space-y-2 relative z-10 leading-6">
-                  <p><span className="text-purple-400">const</span> <span className="text-blue-400">Future</span> = () ={'>'} {'{'}</p>
-                  <p className="pl-4"><span className="text-orange-400">return</span> <span className="text-emerald-400">"Limitless"</span>;</p>
-                  <p>{'}'}</p>
+                <div className="space-y-2 relative z-10 leading-6 text-[13px]">
+                  <TypingAnimation content={[
+                    { text: 'const ', color: 'text-purple-400' },
+                    { text: 'Future ', color: 'text-blue-400' },
+                    { text: '= () => {', color: 'text-slate-400' },
+                    { text: '\n  return ', color: 'text-orange-400' },
+                    { text: '"Limitless"', color: 'text-emerald-400' },
+                    { text: ';', color: 'text-slate-400' },
+                    { text: '\n}', color: 'text-slate-400' }
+                  ]} />
                 </div>
               </div>
             </div>
