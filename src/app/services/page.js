@@ -102,25 +102,37 @@ export default function Services() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Background Blobs for Glass Effect */}
+                    <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
+                        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-orange-200/40 rounded-full blur-[100px] animate-pulse"></div>
+                        <div className="absolute top-1/2 -right-20 w-80 h-80 bg-blue-200/40 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+                        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-200/30 rounded-full blur-[110px] animate-pulse delay-700"></div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                         {services.map((service, i) => (
-                            <div key={i} className={`group relative ${service.theme} p-10 h-80 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:-translate-y-2`}>
+                            <div key={i} className={`group relative p-10 h-80 rounded-[2.5rem] overflow-hidden transition-all duration-700 hover:-translate-y-2 border border-white/40 shadow-xl backdrop-blur-xl`}>
+
+                                {/* Base Liquid Color Layer */}
+                                <div className={`absolute inset-0 ${service.theme} opacity-40 group-hover:opacity-60 transition-opacity duration-700`}></div>
+
+                                {/* Animated Shine Effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -translate-x-full group-hover:translate-x-full rotate-45 pointer-events-none blur-xl"></div>
 
                                 {/* Geometric Background Shapes */}
                                 {service.shape}
 
                                 {/* Content Container */}
-                                <div className="relative z-10 flex flex-col h-full items-start justify-between">
-
+                                <div className="relative z-20 flex flex-col h-full items-start justify-between">
                                     {/* Top Label */}
                                     <div>
-                                        <span className={`inline-block px-3 py-1 rounded-md text-[10px] font-bold tracking-widest uppercase mb-6 ${service.labelColor} shadow-sm`}>
+                                        <span className={`inline-block px-3 py-1 rounded-md text-[10px] font-bold tracking-widest uppercase mb-6 ${service.labelColor} shadow-sm border border-black/5`}>
                                             SERVICE
                                         </span>
-                                        <h3 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight leading-tight">
+                                        <h3 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight leading-tight group-hover:text-orange-600 transition-colors duration-300">
                                             {service.title}
                                         </h3>
-                                        <p className="text-slate-600 text-sm font-medium leading-relaxed max-w-sm">
+                                        <p className="text-slate-700 text-sm font-medium leading-relaxed max-w-sm group-hover:text-slate-900 transition-colors duration-300">
                                             {service.desc}
                                         </p>
                                     </div>
