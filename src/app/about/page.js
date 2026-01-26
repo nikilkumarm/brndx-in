@@ -54,34 +54,32 @@ export default function About() {
                         <div className="max-w-4xl mx-auto relative w-full overflow-hidden pause-on-hover mask-gradient-sides">
                             <div className="flex w-max items-center gap-10 md:gap-16 animate-scroll">
                                 {/* Repeat the logos enough times to fill and loop smoothly */}
-                                {[
-                                    { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
-                                    { src: '/lev ui logo.png', link: '#' },
-                                    { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' },
-                                    { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
-                                    { src: '/lev ui logo.png', link: '#' },
-                                    { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' },
-                                    { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
-                                    { src: '/lev ui logo.png', link: '#' },
-                                    { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' },
-                                    { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
-                                    { src: '/lev ui logo.png', link: '#' },
-                                    { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' }
-                                ].map((partner, i) => (
-                                    <Link
-                                        key={i}
-                                        href={partner.link}
-                                        target={partner.link.startsWith('http') ? "_blank" : "_self"}
-                                        className="relative w-40 h-16 invert opacity-60 hover:opacity-100 transition-all duration-300 block"
-                                    >
-                                        <Image
-                                            src={partner.src}
-                                            alt="Trusted Partner"
-                                            fill
-                                            className="object-contain"
-                                        />
-                                    </Link>
-                                ))}
+                                {
+                                    [
+                                        { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
+                                        { src: '/lev ui logo.png', link: '#' },
+                                        { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' },
+                                        { src: '/just clicks.png', link: '#' },
+                                        { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
+                                        { src: '/lev ui logo.png', link: '#' },
+                                        { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' },
+                                        { src: '/just clicks.png', link: '#' }
+                                    ].map((partner, i) => (
+                                        <Link
+                                            key={i}
+                                            href={partner.link}
+                                            target={partner.link.startsWith('http') ? "_blank" : "_self"}
+                                            className="relative w-40 h-16 invert opacity-60 hover:opacity-100 transition-all duration-300 block"
+                                        >
+                                            <Image
+                                                src={partner.src}
+                                                alt="Trusted Partner"
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </Link>
+                                    ))
+                                }
                             </div>
 
                             {/* Fade Edges (Masking handled by gradient mask or manual overlays if mask not supported well, sticking to overlays for compatibility) */}
