@@ -59,11 +59,11 @@ export default function About() {
                                         { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
                                         { src: '/lev ui logo.png', link: '#' },
                                         { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' },
-                                        { src: '/just clicks.png', link: '#' },
+                                        { src: '/just-clicks.png', link: '#' },
                                         { src: '/cs logo w t.png', link: 'https://www.cinelinestudios.in/' },
                                         { src: '/lev ui logo.png', link: '#' },
                                         { src: '/vultrix logo.png', link: 'https://www.vultrx.in/' },
-                                        { src: '/just clicks.png', link: '#' }
+                                        { src: '/just-clicks.png', link: '#' }
                                     ].map((partner, i) => (
                                         <Link
                                             key={i}
