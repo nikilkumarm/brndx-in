@@ -178,7 +178,7 @@ export default function Home() {
                 <span className="text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem]">Crafting</span>
                 <span className="font-[family-name:var(--font-pinyon)] font-normal text-slate-500 text-[5rem] md:text-[6rem] lg:text-[7rem] xl:text-[7.5rem] relative top-3 ml-4">Digital</span>
               </div>
-              <div className="text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] text-orange-600 mt-2">Masterpieces</div>
+              <div className="text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 mt-2">Masterpieces</div>
             </h1>
 
             <p className="text-lg text-slate-600 font-medium mb-8 leading-relaxed border-l-4 border-orange-500 pl-6 max-w-lg">
