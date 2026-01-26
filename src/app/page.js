@@ -246,7 +246,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Growth</div>
-                <div className="text-3xl font-black text-slate-900">+128%</div>
+                <div className="text-3xl font-black text-slate-900">+<Counter end={128} suffix="%" /></div>
               </div>
             </div>
           </div>
