@@ -212,285 +212,337 @@ export default function Home() {
 
       {/* --- Navbar handled in Layout --- */}
 
-      {/* --- Main "Split Screen" Hero --- */}
-      <main className="relative min-h-screen flex flex-col lg:flex-row items-stretch pt-20 lg:pt-0 overflow-hidden">
+      {/* --- Main "Centered" Hero --- */}
+      <main className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
 
-        {/* Left Side: Content - Widened to fit text */}
-        <div className="w-full lg:w-[55%] bg-white relative z-20 flex flex-col justify-center px-8 md:px-16 lg:px-20 py-12 lg:py-0">
-          <div className="max-w-2xl">
-            <FadeIn delay={100}>
-              <h1 className="font-bold tracking-tight text-slate-900 leading-[1] mb-6">
-                {/* Force Single Line Flex Container */}
-                <div className="flex flex-row items-baseline flex-nowrap whitespace-nowrap">
-                  <span className="text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem]">Crafting</span>
-                  <span className="font-[family-name:var(--font-pinyon)] font-normal text-slate-500 text-[5rem] md:text-[6rem] lg:text-[7rem] xl:text-[7.5rem] relative top-3 ml-4">Digital</span>
-                </div>
-                <div className="text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 mt-2">Masterpieces.</div>
-              </h1>
-            </FadeIn>
+        <div className="max-w-screen-xl mx-auto px-6 md:px-12 relative z-20">
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-            <FadeIn delay={300}>
-              <p className="text-lg text-slate-600 font-medium mb-8 leading-relaxed border-l-4 border-orange-500 pl-6 max-w-lg">
-                We build high-performance, aesthetic websites that drive results. Redefining your digital presence.
-              </p>
-            </FadeIn>
-
-            <FadeIn delay={500}>
-              <div className="flex items-center gap-6">
-                <Link href="/start-project" className="group relative px-8 py-4 bg-slate-900 text-white font-bold rounded-full overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all hover:-translate-y-1">
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <span className="relative z-10 flex items-center gap-2">
-                    Start Project
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                  </span>
-                </Link>
-                <Link href="/work" className="group px-8 py-4 bg-white border border-slate-200 text-slate-900 font-bold rounded-full hover:bg-slate-50 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md flex items-center gap-2">
-                  View Work
-                  <div className="w-2 h-2 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-
-        {/* Right Side: Visual Area - Narrowed slightly */}
-        <div className="w-full lg:w-[45%] relative bg-white flex items-center justify-center lg:justify-end px-4 lg:px-8 py-12 lg:py-0 overflow-visible">
-
-          {/* Background Pattern on Right Side */}
-          <div className="absolute inset-0 z-0 opacity-30">
-            <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-orange-50 rounded-full blur-[100px]"></div>
-            <div className="absolute bottom-[-10%] right-[20%] w-[400px] h-[400px] bg-slate-50 rounded-full blur-[80px]"></div>
-          </div>
-
-          {/* 3D Content Container */}
-          <FadeIn delay={400} direction="left" className="w-full max-w-lg perspective-[2000px] lg:-translate-x-12 relative z-20">
-            {/* Visual Card */}
-            <div
-              className="relative w-full bg-[#1e1e1e] rounded-xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] ring-1 ring-white/10 transition-transform duration-200 ease-out group"
-              onMouseMove={handleCardMove}
-              onMouseLeave={handleCardLeave}
-              ref={cardRef}
-              style={{
-                transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-                transformStyle: 'preserve-3d'
-              }}
-            >
-              {/* Top Bar */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
-                </div>
-                <div className="text-[10px] font-mono text-white/30 tracking-widest uppercase">system_design.tsx</div>
-              </div>
-
-              {/* Content */}
-              <div className="p-8 min-h-[300px] relative">
-                <CodeTyper />
-                {/* Fake Cursor */}
-                <div className="absolute bottom-8 right-8 w-32 h-32 bg-orange-500/20 rounded-full blur-[50px] animate-pulse"></div>
-              </div>
-            </div>
-
-            {/* Floating Element 1: Growth */}
-            <div className="absolute -bottom-10 -left-6 lg:-left-20 bg-white p-5 rounded-2xl shadow-xl flex items-center gap-4 animate-float-delayed z-30">
-              <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-              </div>
-              <div>
-                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Growth</div>
-                <div className="text-3xl font-black text-slate-900">+<Counter end={128} suffix="%" /></div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-
-      </main>
-      {/* --- refined services section --- */}
-      <section className="py-12 bg-black relative overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
-
-          {/* Section Header - Fixed Width for Single Line Text */}
-          <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-8 w-full">
-            <div className="max-w-4xl relative z-10">
-              <FadeIn delay={0}>
-                <span className="text-orange-500 font-bold tracking-widest text-xs uppercase mb-2 block">Our Expertise</span>
-              </FadeIn>
+            {/* Left Side: Content */}
+            <div className="flex-1 max-w-2xl text-left">
               <FadeIn delay={100}>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] font-bold text-white mb-2 leading-[1.1] tracking-tight">
-                  <span className="block whitespace-nowrap">We build digital experiences</span>
-                  <span className="block">
-                    that <span className="font-[family-name:var(--font-geist-sans)] font-thin italic px-2 bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 text-transparent bg-clip-text text-5xl md:text-6xl relative -top-1.5">people love.</span>
+                <h1 className="font-bold tracking-tight text-slate-900 leading-[0.9] mb-8">
+                  <div className="flex flex-col gap-2">
+                    <span className="text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] block">Crafting</span>
+                    <span className="font-[family-name:var(--font-pinyon)] font-normal text-slate-400 text-[5.5rem] md:text-[6.5rem] lg:text-[7.5rem] xl:text-[8rem] relative -ml-4 transform -rotate-2 block w-fit">Digital</span>
+                    <span className="text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] text-orange-500 block">Masterpieces.</span>
+                  </div>
+                </h1>
+              </FadeIn>
+
+              <FadeIn delay={300}>
+                <div className="flex gap-6 border-l-4 border-orange-500 pl-6 mb-10">
+                  <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-lg">
+                    We build high-performance, aesthetic websites that drive results. Redefining your digital presence.
+                  </p>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={500}>
+                <div className="flex flex-wrap items-center gap-4 md:gap-6">
+                  <Link href="/start-project" className="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold rounded-full overflow-hidden shadow-xl shadow-orange-500/20 hover:shadow-2xl hover:shadow-orange-500/40 transition-all hover:-translate-y-1">
+                    <div className="absolute inset-0 w-full h-full bg-white/0 group-hover:bg-white/20 transition-colors duration-300"></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      Start Project
+                      <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </span>
+                  </Link>
+                  <Link href="/work" className="group px-8 py-4 bg-white border border-slate-200 text-slate-900 font-bold rounded-full hover:bg-slate-50 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md flex items-center gap-2">
+                    View Work
+                    <div className="w-2 h-2 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  </Link>
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* Right Side: Visual Area */}
+            <div className="flex-1 w-full max-w-[600px] relative perspective-[2000px]">
+              {/* Decorative Blobs - Localized to this section */}
+              <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-orange-100/50 rounded-full blur-[80px] -z-10 animate-pulse-slow"></div>
+              <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-blue-100/50 rounded-full blur-[60px] -z-10"></div>
+
+              <FadeIn delay={400} direction="left" className="w-full relative z-20">
+                {/* Visual Card */}
+                <div
+                  className="relative w-full bg-[#1A1A1A] rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] ring-1 ring-white/10 transition-transform duration-200 ease-out group"
+                  onMouseMove={handleCardMove}
+                  onMouseLeave={handleCardLeave}
+                  ref={cardRef}
+                  style={{
+                    transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+                    transformStyle: 'preserve-3d'
+                  }}
+                >
+                  {/* Top Bar */}
+                  <div className="flex items-center justify-between px-5 py-4 border-b border-white/5 bg-white/[0.03]">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                      <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                      <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                    </div>
+                    <div className="text-[10px] font-mono text-white/30 tracking-widest uppercase">system_design.tsx</div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-8 md:p-10 min-h-[320px] relative font-mono text-sm leading-relaxed">
+                    <CodeTyper />
+
+                    {/* Glowing Effect */}
+                    <div className="absolute bottom-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-[60px] pointer-events-none"></div>
+                  </div>
+                </div>
+
+                {/* Floating Element: Growth */}
+                <div className="absolute -bottom-8 -left-8 md:-left-12 bg-white p-4 md:p-6 rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] flex items-center gap-5 animate-float-delayed z-30">
+                  <div className="w-14 h-14 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-500">
+                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                  </div>
+                  <div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-0.5">Growth</div>
+                    <div className="text-3xl font-black text-slate-900 tracking-tight flex items-center">
+                      +<Counter end={128} suffix="%" />
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      {/* --- God-Tier Expertise Section --- */}
+
+      <section className="py-40 bg-[#050505] relative overflow-hidden">
+        {/* Superior Ambient Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-orange-600/10 blur-[150px] rounded-full animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] rounded-full"></div>
+        </div>
+
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10">
+
+          {/* Architectural Header */}
+          {/* Architectural Header - Redesigned */}
+          <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-32 relative">
+            <div className="max-w-5xl">
+              <FadeIn delay={0}>
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm text-orange-400 text-[11px] font-mono tracking-widest uppercase mb-10 hover:bg-white/10 transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+                  Engineered Excellence
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={100}>
+                <h2 className="text-5xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-bold text-white mb-12 leading-[1] tracking-tighter">
+                  {/* Outlined / Blueprint Text style */}
+                  <span className="block text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
+                    Architecting
+                  </span>
+                  {/* Filled Gradient Text */}
+                  <span className="block -mt-2 sm:-mt-4 md:-mt-6 pb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-200 to-orange-600 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.2)]">
+                    Digital Legacies.
                   </span>
                 </h2>
               </FadeIn>
+
               <FadeIn delay={200}>
-                <p className="text-slate-400 text-lg max-w-xl mt-4 text-justify">
-                  Our comprehensive suite of services ensures your brand stands out in the crowded digital landscape.
-                </p>
+                <div className="flex items-start gap-6 border-l-2 border-orange-500/30 pl-8 ml-2">
+                  <p className="text-slate-400 text-xl md:text-2xl max-w-2xl leading-relaxed font-light">
+                    We don’t settle for "good." We build technical masterpieces that redefine industry standards and dominate the digital landscape.
+                  </p>
+                </div>
               </FadeIn>
             </div>
 
             <FadeIn delay={300} direction="left">
-              <Link href="/services" className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/10 text-white rounded-full font-semibold hover:bg-white hover:text-black transition-all shadow-lg backdrop-blur-sm">
-                View All Services
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-              </Link>
+              <div className="relative group inline-block">
+                <Link href="/services" className="relative z-10 flex items-center gap-4 text-white font-bold text-sm tracking-[0.25em] uppercase transition-all duration-500 group-hover:gap-6">
+                  Our Capabilities
+                  <svg className="w-6 h-6 text-white transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </Link>
+
+                {/* Abstract 'S' Background Watermark */}
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-12 w-48 h-48 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none text-white">
+                  <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="25" className="w-full h-full">
+                    <path d="M140 50 C 190 50, 190 100, 140 100 C 90 100, 90 150, 140 150" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </div>
             </FadeIn>
           </div>
 
-          {/* Bento Grid - High Contrast Dark Glass Theme */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {/* Card 1: Web Development (Wide Split Card) */}
-            <div className="lg:col-span-2">
+          {/* God-Tier Bento Grid */}
+
+          <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6">
+
+            {/* Card 1: Web Development (The Master Flagship) */}
+            <div className="md:col-span-6 lg:col-span-8 group">
               <FadeIn delay={100} className="h-full">
-                <div className="h-full relative bg-[#0a0a0a]/60 backdrop-blur-3xl border border-white/20 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.2)] rounded-[2.5rem] p-8 overflow-hidden group hover:bg-[#111]/80 transition-all duration-500 flex flex-col md:flex-row gap-8 items-center">
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none opacity-50"></div>
+                <div className="h-full relative bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 md:p-12 overflow-hidden transition-all duration-700 hover:border-orange-500/30 hover:shadow-[0_0_100px_-20px_rgba(249,115,22,0.15)] flex flex-col lg:flex-row gap-12 items-center">
+                  {/* Subtle Grain Overlay */}
+                  <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
 
-                  <div className="flex-1 space-y-4 relative z-10 flex flex-col h-full">
-                    <div className="w-16 h-16 rounded-3xl bg-[#1a1a1a] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] flex items-center justify-center text-orange-500 border border-white/5">
-                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                  <div className="flex-1 space-y-8 relative z-10">
+                    <div className="w-20 h-20 rounded-3xl bg-orange-500/10 flex items-center justify-center text-orange-500 border border-orange-500/20 group-hover:scale-110 transition-transform duration-700">
+                      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-3xl font-bold text-white mb-2">Web Development</h3>
-                      <p className="text-slate-400 leading-relaxed text-sm font-medium">
-                        Building lightning-fast, scalable websites using modern frameworks. We obsess over performance.
+                    <div>
+                      <h3 className="text-4xl font-bold text-white mb-4 tracking-tight">Full-Stack <br />Aesthetics</h3>
+                      <p className="text-slate-400 leading-relaxed text-lg font-medium max-w-sm">
+                        High-performance engineering meet world-class design. We build frameworks that scale to infinity.
                       </p>
                     </div>
-                    {/* Service Details - Compact */}
-                    <div className="w-full pt-3 mt-auto border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-500 uppercase tracking-widest">
-                      <span>Provider: BRNDX</span>
+
+                    <div className="pt-6 border-t border-white/5 flex items-center gap-4 text-[10px] font-mono text-slate-500 uppercase tracking-[0.3em]">
+                      <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                      Elite Architecture
                     </div>
                   </div>
 
-                  {/* Code Snippet - Deep Dark Bubble */}
-                  <div className="flex-1 w-full bg-[#050505] rounded-3xl p-6 font-mono text-[13px] text-slate-400 border border-white/5 shadow-inner relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
-                    <div className="flex gap-2 mb-4 opacity-70">
-                      <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                  {/* Cinematic Code Visual */}
+                  <div className="flex-1 w-full relative">
+                    <div className="relative z-10 w-full bg-[#050505] rounded-[2rem] p-8 font-mono text-[13px] border border-white/10 shadow-2xl group-hover:translate-y-[-10px] transition-transform duration-700">
+                      <div className="flex gap-2 mb-6">
+                        <div className="w-3 h-3 rounded-full bg-orange-500/40"></div>
+                        <div className="w-3 h-3 rounded-full bg-white/10"></div>
+                        <div className="w-3 h-3 rounded-full bg-white/10"></div>
+                      </div>
+                      <div className="space-y-3 opacity-80">
+                        <TypingAnimation speed={40} content={[
+                          { text: 'interface ', color: 'text-orange-400' },
+                          { text: 'Excellence ', color: 'text-white' },
+                          { text: '{', color: 'text-slate-500' },
+                          { text: '\n  performance: ', color: 'text-slate-400' },
+                          { text: '"Infinite"', color: 'text-orange-300' },
+                          { text: ',\n  aesthetics: ', color: 'text-slate-400' },
+                          { text: 'GOD_TIER', color: 'text-orange-500' },
+                          { text: '\n}', color: 'text-slate-500' }
+                        ]} />
+                      </div>
                     </div>
-                    <div className="space-y-2 relative z-10 leading-6 text-[13px]">
-                      <TypingAnimation content={[
-                        { text: 'const ', color: 'text-purple-400' },
-                        { text: 'Future ', color: 'text-blue-400' },
-                        { text: '= () => {', color: 'text-slate-400' },
-                        { text: '\n  return ', color: 'text-orange-400' },
-                        { text: '"Limitless"', color: 'text-emerald-400' },
-                        { text: ';', color: 'text-slate-400' },
-                        { text: '\n}', color: 'text-slate-400' }
-                      ]} />
+                    {/* Visual energy line behind code */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[1px] bg-gradient-to-r from-transparent via-orange-500/20 to-transparent rotate-[15deg] group-hover:rotate-[20deg] transition-all duration-1000"></div>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+
+
+            {/* Card 2: UI/UX (Vertical Power Card) */}
+
+            <div className="md:col-span-6 lg:col-span-4 h-full group">
+              <FadeIn delay={200} className="h-full">
+                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 hover:border-blue-500/30 transition-all duration-700 flex flex-col justify-between overflow-hidden">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full blur-[80px] -mr-20 -mt-20 group-hover:bg-blue-600/10 transition-colors"></div>
+
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-8 border border-blue-500/20 text-blue-400 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-500 ease-out">
+                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">Psychometric <br />Interfaces</h3>
+                    <p className="text-slate-400 leading-relaxed text-base font-medium">
+                      Interfaces that breathe. We design for instinct, ensuring every click feels like a natural extension of the user.
+                    </p>
+                  </div>
+
+                  <div className="pt-8 mt-12 border-t border-white/5 flex justify-between items-center relative z-10">
+                    <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">User-First Core</span>
+                    <div className="flex -space-x-2">
+                      {[1, 2, 3].map(i => <div key={i} className="w-6 h-6 rounded-full border border-black bg-slate-800"></div>)}
                     </div>
                   </div>
                 </div>
               </FadeIn>
             </div>
 
-            {/* Card 2: UI/UX Design */}
-            <FadeIn delay={200} className="h-full">
-              <div className="relative h-full bg-[#0a0a0a]/60 backdrop-blur-3xl border border-white/20 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.2)] rounded-[2.5rem] p-8 hover:-translate-y-1 transition-all duration-500 group overflow-hidden flex flex-col min-h-[240px]">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-[80px] -mr-20 -mt-20 group-hover:bg-blue-600/20 transition-colors pointer-events-none"></div>
-
-                <div className="relative z-10 flex-1">
-                  <div className="w-16 h-16 rounded-3xl bg-[#1a1a1a] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] flex items-center justify-center mb-6 border border-white/5 text-blue-400">
-                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            {/* Card 3: SEO (The Detail Card) */}
+            <div className="md:col-span-3 lg:col-span-3 h-full group">
+              <FadeIn delay={300} className="h-full">
+                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 hover:border-emerald-500/30 transition-all duration-700 flex flex-col justify-between">
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-8 border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
+                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Omnipresence</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                      Dominating search. If they aren't finding you, they are finding them.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">UI/UX Design</h3>
-                  <p className="text-slate-400 leading-relaxed text-sm font-medium">
-                    Crafting intuitive interfaces that delight users.
-                  </p>
+                  <div className="text-[10px] font-mono text-slate-600 uppercase tracking-[0.2em] mt-8">SEO Intensity: 100%</div>
                 </div>
-                {/* Service Details - Compact */}
-                <div className="w-full pt-3 mt-auto border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-500 uppercase tracking-widest z-10">
-                  <span>BRNDX</span>
-                </div>
-              </div>
-            </FadeIn>
+              </FadeIn>
+            </div>
 
-            {/* Card 3: Brand Strategy */}
-            <FadeIn delay={300} className="h-full">
-              <div className="relative h-full bg-[#0a0a0a]/60 backdrop-blur-3xl border border-white/20 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.2)] rounded-[2.5rem] p-8 hover:bg-[#111]/80 transition-all duration-500 group min-h-[240px] flex flex-col">
-                <div className="flex-1">
-                  <div className="w-16 h-16 rounded-3xl bg-[#1a1a1a] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform border border-white/5">
-                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            {/* Card 4: Strategy (The Minimalist Card) */}
+            <div className="md:col-span-3 lg:col-span-3 h-full group">
+              <FadeIn delay={400} className="h-full">
+                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 hover:border-amber-500/30 transition-all duration-700 flex flex-col justify-between">
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-8 border border-amber-500/20 text-amber-500">
+                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Strategy</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                      Blueprint for growth. Every move is calculated for maximum ROI.
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Brand Strategy</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed font-medium">
-                    Defining your voice and visual identity.
-                  </p>
-                </div>
-
-                {/* Service Details - Compact */}
-                <div className="w-full pt-3 mt-auto border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-500 uppercase tracking-widest">
-                  <span>BRNDX</span>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Card 4: Mobile Apps */}
-            <FadeIn delay={400} className="h-full">
-              <div className="relative h-full bg-[#0a0a0a]/60 backdrop-blur-3xl border border-white/20 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.2)] rounded-[2.5rem] p-8 hover:bg-[#111]/80 transition-all duration-500 group min-h-[240px] flex flex-col">
-                <div className="flex-1">
-                  <div className="w-16 h-16 rounded-3xl bg-[#1a1a1a] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] flex items-center justify-center text-blue-500 mb-6 group-hover:scale-110 transition-transform border border-white/5">
-                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                  <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden mt-8">
+                    <div className="w-[85%] h-full bg-amber-500 transition-all duration-1000 group-hover:w-full"></div>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Mobile Apps</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed font-medium">
-                    Native apps for iOS & Android.
-                  </p>
                 </div>
+              </FadeIn>
+            </div>
 
-                {/* Service Details - Compact */}
-                <div className="w-full pt-3 mt-auto border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-500 uppercase tracking-widest">
-                  <span>BRNDX</span>
-                </div>
-              </div>
-            </FadeIn>
+            {/* Card 5: Digital Growth (The "God-Ray" Vibrant Card) */}
+            <div className="md:col-span-6 lg:col-span-6 h-full group">
+              <FadeIn delay={500} className="h-full">
+                <div className="relative h-full bg-gradient-to-br from-orange-600 via-orange-700 to-amber-900 border border-white/20 rounded-[3rem] p-12 text-white hover:scale-[1.02] transition-all duration-700 flex flex-col justify-between min-h-[350px] overflow-hidden shadow-[0_20px_60px_-15px_rgba(249,115,22,0.4)]">
+                  {/* Dynamic Mesh Shimmers */}
+                  <div className="absolute -top-40 -left-40 w-96 h-96 bg-white/20 rounded-full blur-[100px] animate-pulse-slow"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] pointer-events-none"></div>
 
-            {/* Card 5: Digital Growth (Vibrant) */}
-            <FadeIn delay={500} className="h-full">
-              <div className="relative h-full bg-gradient-to-br from-orange-600 to-amber-700 backdrop-blur-3xl border border-white/20 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.35)] rounded-[2.5rem] p-8 text-white hover:scale-[1.02] transition-all duration-500 flex flex-col justify-between min-h-[240px] overflow-hidden">
-                {/* Shine Effect */}
-                <div className="absolute -top-20 -left-20 w-40 h-40 bg-white/20 rounded-full blur-[50px] pointer-events-none"></div>
-
-                <div className="relative z-10 flex-1">
-                  <div className="w-16 h-16 rounded-3xl bg-black/20 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.15)] flex items-center justify-center mb-6 backdrop-blur-sm border border-white/5">
-                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                  <div className="relative z-10">
+                    <div className="w-20 h-20 rounded-3xl bg-white/10 backdrop-blur-xl flex items-center justify-center mb-10 border border-white/20">
+                      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4z" /></svg>
+                    </div>
+                    <h3 className="text-4xl font-bold mb-4 tracking-tighter">Aggressive <br />Scale</h3>
+                    <p className="text-orange-50 text-lg leading-relaxed opacity-90 font-medium max-w-sm">
+                      We don’t just market; we conquer. Data-backed strategies to skyrocket your conversion.
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-white">Digital Growth</h3>
-                  <p className="text-orange-100 text-sm leading-relaxed opacity-90 font-medium">
-                    Data-driven marketing to scale your business.
-                  </p>
-                </div>
 
-                {/* Service Details - Compact */}
-                <div className="w-full pt-3 mt-auto border-t border-white/10 flex justify-between items-center text-[10px] font-mono text-orange-200 uppercase tracking-widest opacity-80 z-10">
-                  <span>BRNDX</span>
+                  <div className="pt-8 mt-auto border-t border-white/20 flex justify-between items-center relative z-10">
+                    <span className="text-xs font-black uppercase tracking-[0.3em] text-orange-200"></span>
+                    <svg className="w-6 h-6 text-white animate-bounce-horizontal" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                  </div>
                 </div>
-              </div>
-            </FadeIn>
+              </FadeIn>
+            </div>
 
           </div>
 
-          {/* Mobile View All Link */}
-          <div className="mt-12 text-center md:hidden">
-            <Link href="/services" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-full text-sm font-bold transition-all hover:bg-slate-800">
-              View All Services
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+
+          {/* Superior Master Link */}
+          <div className="mt-32 text-center">
+            <Link href="/services" className="inline-flex flex-col items-center gap-6 group">
+              <div className="text-slate-500 text-xs font-black uppercase tracking-[0.6em] group-hover:text-white transition-colors duration-500">Discover all 24+ capabilities</div>
+              <div className="w-20 h-[1.5px] bg-orange-500 group-hover:w-40 transition-all duration-700"></div>
             </Link>
           </div>
 
         </div>
       </section>
 
+
       {/* --- Tech Stack Section (Detailed Grid) --- */}
       {/* --- Tech Stack Section (White Cards Style) --- */}
+
       <section className="py-28 bg-[#F8FAFC] relative z-10 border-t border-slate-100">
         <div className="max-w-screen-xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-display">Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">Technology Stack</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-display">Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">TechStack</span></h2>
             <p className="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
               We rely on the most reliable, scalable, and modern technologies.
             </p>
@@ -499,15 +551,15 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-6">
             {[
               // Frontend
-              { name: "React.js", cat: "Frontend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#61DAFB]" fill="currentColor"><path d="M12 2.8c-2.7 0-5.4 0-8 0C.7 2.8 0 4.4 0 7.8c0 3.3 0 6.6 0 9.9 0 3.4.7 4.9 4 4.9 2.7 0 5.4 0 8 0 3.3 0 4-1.6 4-4.9 0-3.3 0-6.6 0-9.9 0-3.4-.7-4.9-4-4.9zm-4 3.6h8c1.3 0 1.6.4 1.6 1.6 0 1.2-.4 1.6-1.6 1.6H8c-1.2 0-1.6-.4-1.6-1.6 0-1.2.4-1.6 1.6-1.6zM8 12.4h8c1.3 0 1.6.4 1.6 1.6 0 1.2-.4 1.6-1.6 1.6H8c-1.2 0-1.6-.4-1.6-1.6 0-1.2.4-1.6 1.6-1.6zM8 18.2h8c1.3 0 1.6.4 1.6 1.6 0 1.2-.4 1.6-1.6 1.6H8c-1.2 0-1.6-.4-1.6-1.6 0-1.2.4-1.6 1.6-1.6z" /><circle cx="12" cy="12" r="2" /></svg> },
+              { name: "React.js", cat: "Frontend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#61DAFB]" fill="currentColor"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44a23.476 23.476 0 0 0-3.107-.534A23.892 23.892 0 0 0 12.769 4.7c1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442a22.73 22.73 0 0 0-3.113.538 15.02 15.02 0 0 1-.254-1.42c-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87a25.64 25.64 0 0 1-4.412.005 26.64 26.64 0 0 1-1.183-1.86c-.372-.64-.71-1.29-1.018-1.946a23.73 23.73 0 0 1 1.013-1.954c.38-.66.773-1.286 1.18-1.868A25.397 25.397 0 0 1 12 8.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933a25.952 25.952 0 0 0-1.345-2.32zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493a23.966 23.966 0 0 0-1.1-2.98c.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98a23.142 23.142 0 0 0-1.086 2.964c-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39a25.819 25.819 0 0 0 1.341-2.338zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143a22.005 22.005 0 0 1-2.006-.386c.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295a1.185 1.185 0 0 1-.553-.132c-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z" /></svg> },
               { name: "Next.js", cat: "Frontend", icon: <svg viewBox="0 0 180 180" className="w-12 h-12 text-black" fill="currentColor"><mask height="180" id="mask0_408_134" maskUnits="userSpaceOnUse" width="180" x="0" y="0" style={{ maskType: 'alpha' }}><circle cx="90" cy="90" fill="black" r="90" /></mask><g mask="url(#mask0_408_134)"><circle cx="90" cy="90" data-circle="true" fill="black" r="90" /><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_408_134)" /><rect fill="url(#paint1_linear_408_134)" height="72" width="12" x="115" y="54" /></g><defs><linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_408_134" x1="109" x2="144.5" y1="116.5" y2="160.5"><stop stopColor="white" /><stop offset="1" stopColor="white" stopOpacity="0" /></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_408_134" x1="121" x2="120.799" y1="54" y2="106.875"><stop stopColor="white" /><stop offset="1" stopColor="white" stopOpacity="0" /></linearGradient></defs></svg> },
-              { name: "TypeScript", cat: "Frontend", icon: <svg viewBox="0 0 128 128" className="w-12 h-12" fill="none"><path d="M1.5 63.915c0-34.492 27.958-62.45 62.45-62.45s62.45 27.958 62.45 62.45-27.958 62.45-62.45 62.45S1.5 98.408 1.5 63.915z" fill="#007ACC" /><path d="M110.85 73.155v-7.1h-16.1v7.1h4.9v23h6.3v-23h4.9zm-29.4 15.1c0 2.2 1.7 4 4.5 4 2.4 0 4.1-1.3 4.1-3.6 0-1.8-1-2.9-3.7-3.9l-2.6-1c-3.1-1.1-5-3.3-5-6.3 0-4.3 3.6-7.3 8.3-7.3 4.8 0 8 2.7 8.3 7h-5.9c-.3-1.8-1.3-2.7-2.6-2.7-1.7 0-2.9 1.1-2.9 2.7 0 1.6.9 2.5 3.3 3.4l2.7 1c3.7 1.4 5.4 3.7 5.4 6.8 0 4.5-3.6 7.6-8.8 7.6-5.7 0-9.4-3.1-9.7-7.8h5.9z" fill="#FFF" /></svg> },
-              { name: "Tailwind", cat: "Frontend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#38B2AC]" fill="currentColor"><path d="M12.001 10.55c-.71-.24-1.47-.36-2.25-.36-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5 7.5-3.36 7.5-7.5c0-.98-.19-1.91-.53-2.77-.34-.86-.82-1.64-1.4-2.3l-5.6 5.6M18.78 4.6l-5.6 5.6c.58.66 1.06 1.44 1.4 2.3.34.86.53 1.79.53 2.77 0 4.14-3.36 7.5-7.5 7.5-.78 0-1.54-.12-2.25-.36l8.84-8.84c-.66-.58-1.44-1.06-2.3-1.4-.86-.34-1.79-.53-2.77-.53-4.14 0-7.5 3.36-7.5 7.5 0 .78.12 1.54.36 2.25L10.55 12c.58-.66 1.06-1.44 1.4-2.3.34-.86.53-1.79.53-2.77 0-4.14-3.36-7.5-7.5-7.5-.78 0-1.54.12-2.25.36l5.6-5.6" /></svg> },
+              { name: "TypeScript", cat: "Frontend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#3178C6]" fill="currentColor"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z" /></svg> },
+              { name: "Tailwind", cat: "Frontend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#06B6D4]" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" /></svg> },
               { name: "Vue.js", cat: "Frontend", icon: <svg viewBox="0 0 128 128" className="w-12 h-12" fill="none"><path fill="#41B883" d="M78.8 10L64 35.4 49.2 10H0l64 110.8L128 10H78.8z" /><path fill="#35495E" d="M78.8 10L64 35.4 49.2 10H25.6l38.4 66.5L102.4 10H78.8z" /></svg> },
 
               // Backend
               { name: "Node.js", cat: "Backend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#339933]" fill="currentColor"><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z" /></svg> },
-              { name: "Python", cat: "Backend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12" fill="none"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z" fill="#3776AB" /><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z" fill="#FFD43B" /></svg> },
+              { name: "Python", cat: "Backend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#3776AB]" fill="currentColor"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z" /></svg> },
               { name: "Django", cat: "Backend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#092E20]" fill="currentColor"><path d="M11.146 0h3.924v18.166c-2.013.382-3.491.535-5.096.535-4.791 0-7.288-2.166-7.288-6.32 0-4.002 2.65-6.6 6.753-6.6.637 0 1.121.05 1.707.203zm0 9.143a3.894 3.894 0 00-1.325-.204c-1.988 0-3.134 1.223-3.134 3.365 0 2.09 1.096 3.236 3.109 3.236.433 0 .79-.025 1.35-.102V9.142zM21.314 6.06v9.098c0 3.134-.229 4.638-.917 5.937-.637 1.249-1.478 2.039-3.211 2.905l-3.644-1.733c1.733-.815 2.574-1.53 3.109-2.625.561-1.121.739-2.421.739-5.835V6.059h3.924zM17.39.021h3.924v4.026H17.39z" /></svg> },
               { name: "Go", cat: "Backend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#00ADD8]" fill="currentColor"><path d="M1.811 10.231c-.047 0-.058-.023-.035-.059l.246-.315c.023-.035.081-.058.128-.058h4.172c.046 0 .058.035.035.07l-.199.303c-.023.036-.082.07-.117.07zM.047 11.306c-.047 0-.059-.023-.035-.058l.245-.316c.023-.035.082-.058.129-.058h5.328c.047 0 .07.035.058.07l-.093.28c-.012.047-.058.07-.105.07zm2.828 1.075c-.047 0-.059-.035-.035-.07l.163-.292c.023-.035.07-.07.117-.07h2.337c.047 0 .07.035.07.082l-.023.28c0 .047-.047.082-.082.082zm12.129-2.36c-.736.187-1.239.327-1.963.514-.176.046-.187.058-.34-.117-.174-.199-.303-.327-.548-.444-.737-.362-1.45-.257-2.115.175-.795.514-1.204 1.274-1.192 2.22.011.935.654 1.706 1.577 1.835.795.105 1.46-.175 1.987-.77.105-.13.198-.27.315-.434H10.47c-.245 0-.304-.152-.222-.35.152-.362.432-.97.596-1.274a.315.315 0 01.292-.187h4.253c-.023.316-.023.631-.07.947a4.983 4.983 0 01-.958 2.29c-.841 1.11-1.94 1.8-3.33 1.986-1.145.152-2.209-.07-3.143-.77-.865-.655-1.356-1.52-1.484-2.595-.152-1.274.222-2.419.993-3.424.83-1.086 1.928-1.776 3.272-2.02 1.098-.2 2.15-.07 3.096.571.62.41 1.063.97 1.356 1.648.07.105.023.164-.117.2m3.868 6.461c-1.064-.024-2.034-.328-2.852-1.029a3.665 3.665 0 01-1.262-2.255c-.21-1.32.152-2.489.947-3.529.853-1.122 1.881-1.706 3.272-1.95 1.192-.21 2.314-.095 3.33.595.923.63 1.496 1.484 1.648 2.605.198 1.578-.257 2.863-1.344 3.962-.771.783-1.718 1.273-2.805 1.495-.315.06-.63.07-.934.106zm2.78-4.72c-.011-.153-.011-.27-.034-.387-.21-1.157-1.274-1.81-2.384-1.554-1.087.245-1.788.935-2.045 2.033-.21.912.234 1.835 1.075 2.21.643.28 1.285.244 1.905-.07.923-.48 1.425-1.228 1.484-2.233z" /></svg> },
               { name: "Express.js", cat: "Backend", icon: <svg viewBox="0 0 24 24" className="w-12 h-12 text-black" fill="currentColor"><path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.134-.666A88.33 88.33 0 010 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z" /></svg> },
@@ -551,11 +603,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-20">
-            <Link href="/platforms" className="inline-flex items-center justify-center px-8 py-3.5 bg-[#E14D56] text-white rounded-md font-bold text-sm hover:bg-[#c93d46] transition-all shadow-xl shadow-red-500/20 hover:shadow-red-500/30 hover:-translate-y-0.5">
-              Our platforms &rarr;
-            </Link>
-          </div>
+
 
         </div>
       </section>

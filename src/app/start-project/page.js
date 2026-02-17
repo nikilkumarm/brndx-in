@@ -14,7 +14,7 @@ export default function StartProject() {
 
     const servicesList = [
         "Web Development", "UI/UX Design", "Digital Marketing",
-        "Brand Identity", "SEO Optimization", "E-Commerce"
+        "Multimedia Production", "SEO Optimization", "E-Commerce", "Influencer Marketing"
     ];
 
     const toggleService = (service) => {

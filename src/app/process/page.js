@@ -11,32 +11,37 @@ export default function Process() {
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
 
-        // Intersection Observer for Process Steps
-        const observerOptions = {
-            root: null,
-            rootMargin: '-45% 0px -45% 0px', // Activate only when element is in the absolute center
-            threshold: 0
-        };
+            // Robust Active Step Calculation
+            // We calculate which step's center is closest to a "reading line" 
+            // settled at 25% of the viewport height. 
+            // This biases the active state to the top of the screen (fixing the large screen issue)
+            // while ensuring smooth transitions without skipping.
+            const steps = document.querySelectorAll('.process-step');
+            const targetLine = window.innerHeight * 0.25;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const stepIndex = parseInt(entry.target.getAttribute('data-step'));
-                    setActiveStep(stepIndex);
+            let closestStep = 0;
+            let minDistance = Number.MAX_VALUE;
+
+            steps.forEach((step, index) => {
+                const rect = step.getBoundingClientRect();
+                const stepCenter = rect.top + (rect.height / 2);
+                const distance = Math.abs(targetLine - stepCenter);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestStep = index;
                 }
             });
-        }, observerOptions);
 
-        const steps = document.querySelectorAll('.process-step');
-        steps.forEach((step) => observer.observe(step));
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            steps.forEach((step) => observer.unobserve(step));
+            setActiveStep(closestStep);
         };
+
+        window.addEventListener('scroll', handleScroll);
+        // Initial check
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
@@ -59,66 +64,74 @@ export default function Process() {
 
                     {/* Process Steps */}
                     <div className="relative">
-                        {/* Connecting Line */}
+                        {/* Desktop Connecting Line (Center) */}
                         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 hidden md:block">
-                            {/* Animated Line Fill */}
                             <div
                                 className="absolute top-0 left-0 w-full bg-orange-500 transition-all duration-1000 ease-out"
                                 style={{ height: `${(activeStep / 4) * 100}%` }}
                             ></div>
                         </div>
 
-                        <div className="space-y-32">
+                        {/* Mobile Connecting Line (Left) */}
+                        <div className="absolute left-6 top-0 bottom-0 w-px bg-slate-200 md:hidden">
+                            <div
+                                className="absolute top-0 left-0 w-full bg-orange-500 transition-all duration-1000 ease-out"
+                                style={{ height: `${(activeStep / 4) * 100}%` }}
+                            ></div>
+                        </div>
+
+                        <div className="space-y-16 md:space-y-32">
                             {[
                                 {
                                     step: "01",
                                     title: "Discover & Strategy",
-                                    desc: "We start by understanding your business, your goals, and your audience. We research your competitors and define a strategy that sets you apart."
+                                    desc: "We research your competitors and define a strategy that sets you apart."
                                 },
                                 {
                                     step: "02",
                                     title: "Design & Prototype",
-                                    desc: "Our designers create visual concepts and interactive prototypes. We focus on user experience (UX) and user interface (UI) to create a seamless journey."
+                                    desc: "We focus on user experience (UX) and user interface (UI) to create a seamless journey."
                                 },
                                 {
                                     step: "03",
                                     title: "Develop & Build",
-                                    desc: "Our developers bring the designs to life using modern technologies. We ensure the code is clean, performant, and scalable."
+                                    desc: "Our developers bring the designs to life using modern technologies."
                                 },
                                 {
                                     step: "04",
                                     title: "Launch & Grow",
-                                    desc: "We test everything rigourously before launch. Once live, we help you grow with data-driven marketing and ongoing support."
+                                    desc: "Once live, we help you grow with data-driven marketing and support."
                                 },
                                 {
                                     step: "05",
                                     title: "Evolve & Scale",
-                                    desc: "Digital products are living ecosystems. We continuously iterate based on real-world data, ensuring your platform adapts and scales with your success."
+                                    desc: "We continuously iterate based on real-world data, ensuring your platform scales."
                                 }
                             ].map((item, index) => {
                                 const isActive = activeStep === index;
                                 return (
                                     <div
                                         key={index}
-                                        className={`process-step flex flex-col md:flex-row items-center gap-12 transition-all duration-700 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'} ${isActive ? 'opacity-100 scale-100' : 'opacity-40 scale-95 blur-[1px]'}`}
+                                        className={`process-step relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 transition-all duration-700 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'} ${isActive ? 'opacity-100' : 'opacity-40 blur-[1px]'}`}
                                         data-step={index}
                                     >
-                                        {/* Content */}
-                                        <div className={`flex-1 text-center ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                                            <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors duration-500 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>{item.title}</h3>
-                                            <p className={`text-lg leading-relaxed transition-colors duration-500 ${isActive ? 'text-slate-600' : 'text-slate-300'}`}>{item.desc}</p>
+                                        {/* Content Wrapper */}
+                                        <div className={`flex-1 pl-20 md:pl-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                                            <h3 className={`text-2xl md:text-4xl font-bold mb-3 transition-colors duration-500 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>{item.title}</h3>
+                                            <p className={`text-base md:text-lg leading-relaxed transition-colors duration-500 ${isActive ? 'text-slate-600' : 'text-slate-300'}`}>{item.desc}</p>
                                         </div>
 
-                                        {/* Center Point */}
-                                        <div className="relative z-10 flex cursor-default">
-                                            <div className={`w-20 h-20 rounded-full border-4 flex items-center justify-center text-2xl font-black transition-all duration-500 ${isActive ? 'bg-orange-500 border-orange-200 text-white shadow-2xl shadow-orange-500/40 scale-110' : 'bg-white border-slate-200 text-slate-300'}`}>
+                                        {/* Marker/Center Point */}
+                                        {/* On Mobile: Absolute Left; On Desktop: Relative Center */}
+                                        <div className="absolute left-0 top-0 md:relative md:top-auto md:left-auto z-10 flex shrink-0 cursor-default">
+                                            <div className={`w-12 h-12 md:w-20 md:h-20 rounded-full border-4 flex items-center justify-center text-sm md:text-2xl font-black transition-all duration-500 ${isActive ? 'bg-orange-500 border-orange-200 text-white shadow-xl md:shadow-2xl shadow-orange-500/40 scale-100 md:scale-110' : 'bg-white border-slate-200 text-slate-300'}`}>
                                                 {item.step}
                                             </div>
                                             {/* Pulse Ring for Active */}
                                             {isActive && <div className="absolute inset-0 rounded-full border-2 border-orange-500 animate-ping"></div>}
                                         </div>
 
-                                        {/* Empty Space for alignment */}
+                                        {/* Empty Space for Desktop Alignment */}
                                         <div className="flex-1 hidden md:block"></div>
                                     </div>
                                 );
@@ -290,15 +303,35 @@ export default function Process() {
                         {/* Mobile Grid Fallback (Timeline Style for smaller screens) */}
                         <div className="flex flex-col gap-8 lg:hidden max-w-md mx-auto relative pl-8 border-l-2 border-slate-200 ml-6">
                             {[
-                                { title: "Workshops", color: "bg-orange-600", text: "text-orange-600" },
-                                { title: "Approvals", color: "bg-blue-600", text: "text-blue-600" },
-                                { title: "Feedback", color: "bg-green-600", text: "text-green-600" },
-                                { title: "Testing", color: "bg-purple-600", text: "text-purple-600" }
+                                {
+                                    title: "Workshops",
+                                    color: "bg-orange-500",
+                                    text: "text-slate-900",
+                                    desc: "We dive deep into your brand's core values to define a crystal-clear vision."
+                                },
+                                {
+                                    title: "Approvals",
+                                    color: "bg-blue-500",
+                                    text: "text-slate-900",
+                                    desc: "You hold the keys. We only proceed to the next phase after your green light."
+                                },
+                                {
+                                    title: "Feedback",
+                                    color: "bg-green-500",
+                                    text: "text-slate-900",
+                                    desc: "Continuous loops of feedback to refine pixels until they are perfect."
+                                },
+                                {
+                                    title: "User Testing",
+                                    color: "bg-purple-500",
+                                    text: "text-slate-900",
+                                    desc: "Real-world stress testing before we pop the champagne for launch."
+                                }
                             ].map((step, i) => (
-                                <div key={i} className="relative bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                                    <div className={`absolute -left-[41px] top-6 w-5 h-5 rounded-full border-4 border-white ${step.color} shadow-sm`}></div>
+                                <div key={i} className="relative bg-white p-6 rounded-2xl shadow-sm border border-slate-100 pb-8">
+                                    <div className={`absolute -left-[41px] top-6 w-5 h-5 rounded-full border-4 border-white ${step.color} shadow-sm z-10`}></div>
                                     <h4 className={`font-bold text-xl ${step.text} mb-2`}>{step.title}</h4>
-                                    <p className="text-sm text-slate-500 leading-relaxed">Collaborative milestone to ensure project success.</p>
+                                    <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
                                 </div>
                             ))}
                         </div>
