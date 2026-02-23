@@ -6,17 +6,20 @@ import Navbar from "../components/Navbar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const pinyon = Pinyon_Script({
   variable: "--font-pinyon",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
@@ -30,6 +33,7 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata = {

@@ -43,6 +43,7 @@ export default function Navbar() {
                                 src="/BRNDX Logo.png"
                                 alt="BRNDX"
                                 fill
+                                priority
                                 className="object-contain drop-shadow-sm"
                             />
                         </div>
