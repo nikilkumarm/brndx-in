@@ -7,6 +7,7 @@ import Link from 'next/link';
 export default function Process() {
     const [scrolled, setScrolled] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,15 +38,40 @@ export default function Process() {
             setActiveStep(closestStep);
         };
 
+        const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('mousemove', handleMouseMove);
         // Initial check
         handleScroll();
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
     }, []);
 
     return (
         <div className="min-h-screen bg-white text-black font-sans selection:bg-orange-500/30">
+
+            {/* --- Background & Spotlight --- */}
+            <div className="fixed inset-0 pointer-events-none -z-10">
+                {/* Base Faint Grid */}
+                <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+
+                {/* Dynamic Spotlight Grid - Reveals grid around cursor */}
+                <div
+                    className="absolute inset-0 bg-grid-pattern opacity-[0.08]"
+                    style={{
+                        maskImage: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`,
+                        WebkitMaskImage: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`
+                    }}
+                ></div>
+
+                {/* Floating Orbs */}
+                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-500/5 blur-[120px] rounded-full animate-float-slow"></div>
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-amber-500/5 blur-[100px] rounded-full animate-float-delayed"></div>
+            </div>
 
             {/* --- Navbar handled in Layout --- */}
 
@@ -54,10 +80,10 @@ export default function Process() {
                     {/* Header */}
                     <div className="text-center mb-24 max-w-3xl mx-auto">
                         <span className="text-orange-600 font-bold tracking-wider uppercase text-xs mb-3 block">How We Work</span>
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6">
+                        <h1 className="text-[2.5rem] sm:text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1] md:leading-tight">
                             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Process</span>
                         </h1>
-                        <p className="text-lg text-slate-600 leading-relaxed">
+                        <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                             We follow a proven methodology to ensure every project is delivered on time, within budget, and to the highest standard.
                         </p>
                     </div>
@@ -300,40 +326,100 @@ export default function Process() {
                             </div>
                         </div>
 
-                        {/* Mobile Grid Fallback (Timeline Style for smaller screens) */}
-                        <div className="flex flex-col gap-8 lg:hidden max-w-md mx-auto relative pl-8 border-l-2 border-slate-200 ml-6">
-                            {[
-                                {
-                                    title: "Workshops",
-                                    color: "bg-orange-500",
-                                    text: "text-slate-900",
-                                    desc: "We dive deep into your brand's core values to define a crystal-clear vision."
-                                },
-                                {
-                                    title: "Approvals",
-                                    color: "bg-blue-500",
-                                    text: "text-slate-900",
-                                    desc: "You hold the keys. We only proceed to the next phase after your green light."
-                                },
-                                {
-                                    title: "Feedback",
-                                    color: "bg-green-500",
-                                    text: "text-slate-900",
-                                    desc: "Continuous loops of feedback to refine pixels until they are perfect."
-                                },
-                                {
-                                    title: "User Testing",
-                                    color: "bg-purple-500",
-                                    text: "text-slate-900",
-                                    desc: "Real-world stress testing before we pop the champagne for launch."
-                                }
-                            ].map((step, i) => (
-                                <div key={i} className="relative bg-white p-6 rounded-2xl shadow-sm border border-slate-100 pb-8">
-                                    <div className={`absolute -left-[41px] top-6 w-5 h-5 rounded-full border-4 border-white ${step.color} shadow-sm z-10`}></div>
-                                    <h4 className={`font-bold text-xl ${step.text} mb-2`}>{step.title}</h4>
-                                    <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
+                        {/* Mobile Winding Road (Vertical) */}
+                        <div className="relative w-full max-w-md mx-auto h-[1000px] lg:hidden mt-8 mb-16 overflow-hidden">
+
+                            {/* The Road SVG for Mobile */}
+                            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 1000" fill="none" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="roadGradMobile" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stopColor="#f8fafc" stopOpacity="0" />
+                                        <stop offset="10%" stopColor="#000000" stopOpacity="0.8" />
+                                        <stop offset="90%" stopColor="#000000" stopOpacity="0.8" />
+                                        <stop offset="100%" stopColor="#f8fafc" stopOpacity="0" />
+                                    </linearGradient>
+                                </defs>
+
+                                {/* Base Road */}
+                                <path
+                                    d="M 200 0 C 200 100, 60 80, 60 200 C 60 300, 340 370, 340 450 C 340 530, 60 600, 60 700 C 60 800, 340 870, 340 950 C 340 1000, 200 1000, 200 1000"
+                                    stroke="url(#roadGradMobile)"
+                                    strokeWidth="45"
+                                    strokeLinecap="round"
+                                    fill="none"
+                                />
+
+                                {/* Dashed Line */}
+                                <path
+                                    id="mobWindingPath"
+                                    d="M 200 0 C 200 100, 60 80, 60 200 C 60 300, 340 370, 340 450 C 340 530, 60 600, 60 700 C 60 800, 340 870, 340 950 C 340 1000, 200 1000, 200 1000"
+                                    stroke="#f97316"
+                                    strokeWidth="3"
+                                    strokeDasharray="10 10"
+                                    strokeLinecap="round"
+                                    fill="none"
+                                    className="opacity-50"
+                                />
+
+                                {/* Traveler */}
+                                <circle r="5" fill="#f97316" className="drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]">
+                                    <animateMotion dur="8s" repeatCount="indefinite" rotate="auto">
+                                        <mpath href="#mobWindingPath" />
+                                    </animateMotion>
+                                </circle>
+                            </svg>
+
+                            {/* Node 1: Workshops (Left) */}
+                            <div className="absolute w-[70%] z-10" style={{ top: '20%', left: '15%', transform: 'translateY(-50%)' }}>
+                                <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                                    <div className="w-3 h-3 rounded-full bg-orange-500 ring-4 ring-white shadow-lg mb-1"></div>
+                                    <div className="px-2 py-0.5 rounded-full bg-slate-900 text-white font-bold text-[8px] uppercase tracking-wider shadow-md">01</div>
                                 </div>
-                            ))}
+                                <div className="ml-8 bg-white p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 relative">
+                                    <div className="absolute top-1/2 left-[-6px] w-3 h-3 bg-white transform rotate-45 border-b border-l border-slate-100 -translate-y-1/2"></div>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2 leading-tight">Workshops</h4>
+                                    <p className="text-[13px] text-slate-500 leading-relaxed font-medium">We dive deep into your brand's core values to define a crystal-clear vision.</p>
+                                </div>
+                            </div>
+
+                            {/* Node 2: Approvals (Right) */}
+                            <div className="absolute w-[70%] z-10" style={{ top: '45%', right: '15%', transform: 'translateY(-50%)' }}>
+                                <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                                    <div className="w-3 h-3 rounded-full bg-blue-500 ring-4 ring-white shadow-lg mb-1"></div>
+                                    <div className="px-2 py-0.5 rounded-full bg-slate-900 text-white font-bold text-[8px] uppercase tracking-wider shadow-md">02</div>
+                                </div>
+                                <div className="mr-8 bg-white p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 relative text-right">
+                                    <div className="absolute top-1/2 right-[-6px] w-3 h-3 bg-white transform rotate-45 border-t border-r border-slate-100 -translate-y-1/2"></div>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2 leading-tight">Approvals</h4>
+                                    <p className="text-[13px] text-slate-500 leading-relaxed font-medium">You hold the keys. We only proceed to the next phase after your green light.</p>
+                                </div>
+                            </div>
+
+                            {/* Node 3: Feedback (Left) */}
+                            <div className="absolute w-[70%] z-10" style={{ top: '70%', left: '15%', transform: 'translateY(-50%)' }}>
+                                <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                                    <div className="w-3 h-3 rounded-full bg-green-500 ring-4 ring-white shadow-lg mb-1"></div>
+                                    <div className="px-2 py-0.5 rounded-full bg-slate-900 text-white font-bold text-[8px] uppercase tracking-wider shadow-md">03</div>
+                                </div>
+                                <div className="ml-8 bg-white p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 relative">
+                                    <div className="absolute top-1/2 left-[-6px] w-3 h-3 bg-white transform rotate-45 border-b border-l border-slate-100 -translate-y-1/2"></div>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2 leading-tight">Feedback</h4>
+                                    <p className="text-[13px] text-slate-500 leading-relaxed font-medium">Continuous loops of feedback to refine pixels until they are perfect.</p>
+                                </div>
+                            </div>
+
+                            {/* Node 4: Testing (Right) */}
+                            <div className="absolute w-[70%] z-10" style={{ top: '95%', right: '15%', transform: 'translateY(-50%)' }}>
+                                <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                                    <div className="w-3 h-3 rounded-full bg-purple-500 ring-4 ring-white shadow-lg mb-1"></div>
+                                    <div className="px-2 py-0.5 rounded-full bg-purple-600 text-white font-bold text-[8px] uppercase tracking-wider shadow-md">04</div>
+                                </div>
+                                <div className="mr-8 bg-white p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 relative text-right">
+                                    <div className="absolute top-1/2 right-[-6px] w-3 h-3 bg-white transform rotate-45 border-t border-r border-slate-100 -translate-y-1/2"></div>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2 leading-tight">User Testing</h4>
+                                    <p className="text-[13px] text-slate-500 leading-relaxed font-medium">Real-world stress testing before we pop the champagne for launch.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -138,14 +138,36 @@ export default function Services() {
         }
     ];
 
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
+
     return (
         <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-orange-500/10 overflow-x-hidden">
             {/* --- Global Premium Light Background --- */}
-            <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-                <div className="absolute top-[-10%] right-[-10%] w-[1000px] h-[1000px] bg-orange-500/5 blur-[200px] rounded-full opacity-60"></div>
-                <div className="absolute bottom-[-20%] left-[-10%] w-[1000px] h-[1000px] bg-blue-500/5 blur-[250px] rounded-full opacity-40"></div>
-                {/* Minimalist Grid Pattern */}
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
+            <div className="fixed inset-0 pointer-events-none -z-10">
+                {/* Base Faint Grid */}
+                <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+
+                {/* Dynamic Spotlight Grid - Reveals grid around cursor */}
+                <div
+                    className="absolute inset-0 bg-grid-pattern opacity-[0.08]"
+                    style={{
+                        maskImage: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`,
+                        WebkitMaskImage: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`
+                    }}
+                ></div>
+
+                {/* Floating Orbs */}
+                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-500/5 blur-[120px] rounded-full animate-float-slow"></div>
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-amber-500/5 blur-[100px] rounded-full animate-float-delayed"></div>
             </div>
 
             <main className="relative pt-40 px-6 md:px-12 pb-40">
@@ -153,23 +175,23 @@ export default function Services() {
 
                     {/* Highly Professional Header (Jobsian Light Aesthetic) */}
                     <div className="relative text-center mb-40 flex flex-col items-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 mb-12 shadow-sm transition-all hover:border-orange-200 cursor-default">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 mb-8 md:mb-12 shadow-sm transition-all hover:border-orange-200 cursor-default">
                             <span className="flex h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse"></span>
                             <span className="text-[10px] font-black tracking-[0.3em] text-slate-400 uppercase">The Authority of Excellence</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-[-0.05em] text-slate-900 mb-12 leading-[1.0] max-w-7xl whitespace-nowrap">
-                            World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-500 to-orange-600 bg-[length:200%_auto] animate-gradient-flow">Services.</span>
+                        <h1 className="text-[2.75rem] sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-[-0.05em] text-slate-900 mb-8 md:mb-12 leading-[1.1] md:leading-[1.0] max-w-7xl whitespace-normal md:whitespace-nowrap">
+                            World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-500 to-orange-600 bg-[length:200%_auto] animate-gradient-flow block md:inline">Services.</span>
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-slate-400 leading-relaxed max-w-3xl mx-auto font-medium tracking-tight">
+                        <p className="text-lg sm:text-xl md:text-2xl text-slate-400 leading-relaxed max-w-3xl mx-auto font-medium tracking-tight px-4 md:px-0">
                             We don't just build. We architect legacies. <br className="hidden md:block" />
                             <span className="text-slate-900/80">Every detail is calculated. Every outcome is inevitable.</span>
                         </p>
                     </div>
 
                     {/* God-Tier High-Density Grid (White Version) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-100 border border-slate-100 overflow-hidden rounded-[3rem] lg:rounded-[4rem] shadow-2xl shadow-slate-200/50">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-100 border border-slate-100 overflow-hidden rounded-[2rem] md:rounded-[3rem] lg:rounded-[4rem] shadow-2xl shadow-slate-200/50">
                         {services.map((service, idx) => (
                             <div
                                 key={idx}
@@ -208,9 +230,9 @@ export default function Services() {
                             {/* Premium Ambient Glow */}
                             <div className="absolute -inset-8 bg-orange-500/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
 
-                            <Link href="/start-project" className="relative px-16 py-8 rounded-[4rem] bg-[#0A0A0B] text-white font-bold text-2xl tracking-tight flex items-center gap-6 shadow-2xl hover:shadow-[0_40px_120px_-20px_rgba(249,115,22,0.4)] transition-all duration-700 active:scale-95 group">
+                            <Link href="/start-project" className="relative px-8 md:px-16 py-6 md:py-8 rounded-[3rem] md:rounded-[4rem] bg-[#0A0A0B] text-white font-bold text-lg md:text-2xl tracking-tight flex items-center justify-center gap-4 md:gap-6 shadow-2xl hover:shadow-[0_40px_120px_-20px_rgba(249,115,22,0.4)] transition-all duration-700 active:scale-95 group">
                                 Start Your Project
-                                <svg className="w-8 h-8 transition-transform duration-500 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-6 h-6 md:w-8 md:h-8 transition-transform duration-500 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </Link>

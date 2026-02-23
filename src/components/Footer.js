@@ -25,7 +25,7 @@ export default function Footer() {
 
                 {/* Top Section: Logo & Socials */}
                 <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
-                    <Link href="/" className="relative w-72 h-20">
+                    <Link href="/" className="relative w-64 md:w-72 h-16 md:h-20">
                         <Image
                             src="/BRNDX Logo.png"
                             alt="BRNDX"
@@ -51,10 +51,10 @@ export default function Footer() {
                 </div>
 
                 {/* Middle Section: Links & Newsletter */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-10 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-12 md:mb-10 text-sm">
 
                     {/* Description */}
-                    <div className="md:col-span-4 space-y-6">
+                    <div className="md:col-span-4 space-y-4 md:space-y-6 text-center md:text-left">
                         <p className="text-slate-600 leading-relaxed">
                             We build brands that stand out. Elevating digital experiences through innovation, strategy, and cutting-edge technology.
                         </p>
@@ -64,13 +64,13 @@ export default function Footer() {
                     </div>
 
                     {/* Nav Links */}
-                    <div className="md:col-span-4 flex justify-between md:justify-around font-semibold text-slate-800">
-                        <div className="flex flex-col gap-4">
+                    <div className="md:col-span-4 flex justify-center gap-16 md:justify-around font-semibold text-slate-800 text-[15px] md:text-sm">
+                        <div className="flex flex-col gap-5 md:gap-4 text-left">
                             <Link href="/" className="hover:text-orange-600 transition-colors">Home</Link>
                             <Link href="/services" className="hover:text-orange-600 transition-colors">Services</Link>
                             <Link href="/work" className="hover:text-orange-600 transition-colors">Work</Link>
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-5 md:gap-4 text-left">
                             <Link href="/process" className="hover:text-orange-600 transition-colors">Process</Link>
                             <Link href="/about" className="hover:text-orange-600 transition-colors">About</Link>
                             <Link href="/start-project" className="hover:text-orange-600 transition-colors">Start Project</Link>
@@ -78,14 +78,14 @@ export default function Footer() {
                     </div>
 
                     {/* Subscribe Search */}
-                    <div className="md:col-span-4">
+                    <div className="md:col-span-4 max-w-sm mx-auto md:max-w-none w-full">
                         <div className="relative">
                             <input
                                 type="email"
                                 placeholder="Enter your email"
-                                className="w-full pl-6 pr-32 py-4 bg-white border border-slate-200 rounded-full focus:outline-none focus:border-orange-500/50 shadow-sm text-slate-900 transition-all appearance-none placeholder-slate-400"
+                                className="w-full pl-6 pr-28 sm:pr-32 py-4 md:py-4 bg-white border border-slate-200 rounded-full focus:outline-none focus:border-orange-500/50 shadow-sm text-slate-900 transition-all appearance-none placeholder-slate-400 text-sm"
                             />
-                            <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-orange-600 text-white px-6 rounded-full font-bold text-sm hover:bg-orange-700 transition-colors shadow-md hover:shadow-lg">
+                            <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-orange-600 text-white px-4 md:px-6 rounded-full font-bold text-xs hover:bg-orange-700 transition-colors shadow-md hover:shadow-lg">
                                 Subscribe
                             </button>
                         </div>
@@ -94,10 +94,10 @@ export default function Footer() {
 
                 {/* Floating Contact Bar (The "Pill") */}
                 <div className="relative w-full max-w-4xl mx-auto mb-10">
-                    <div className="absolute inset-0 bg-white/50 blur-xl rounded-full -z-10"></div>
-                    <div className="bg-white/80 backdrop-blur-md border border-slate-100 shadow-xl shadow-slate-200/50 rounded-full p-3 md:p-4 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12">
+                    <div className="absolute inset-0 bg-white/50 blur-xl rounded-3xl md:rounded-full -z-10"></div>
+                    <div className="bg-white/80 backdrop-blur-md border border-slate-100 shadow-xl shadow-slate-200/50 rounded-3xl md:rounded-full p-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-12">
 
-                        <div className="pl-6 font-bold text-slate-900 shrink-0">
+                        <div className="md:pl-6 font-bold text-slate-900 shrink-0 text-center">
                             Need Help?
                         </div>
 
@@ -117,9 +117,9 @@ export default function Footer() {
                 </div>
 
                 {/* Footer Bottom */}
-                <div className="flex flex-col md:flex-row justify-between items-center text-xs font-medium text-slate-500 pt-8 border-t border-slate-200">
+                <div className="flex flex-col md:flex-row justify-between items-center text-xs font-medium text-slate-500 pt-8 border-t border-slate-200 text-center md:text-left">
                     <p>© {new Date().getFullYear()} BRNDX. All rights reserved.</p>
-                    <div className="flex items-center gap-6 mt-4 md:mt-0">
+                    <div className="flex items-center gap-4 md:gap-6 mt-4 md:mt-0">
                         <Link href="/privacy-policy" className="hover:text-orange-600 transition-colors">Privacy Policy</Link>
                         <Link href="/terms-of-service" className="hover:text-orange-600 transition-colors">Terms of Service</Link>
                     </div>

@@ -76,7 +76,7 @@ const TypingAnimation = ({ content, speed = 30 }) => {
 // Character-by-Character Progressive Typing
 const CodeTyper = () => {
   const content = [
-    { text: '// building_brands_beyond.tsx', color: 'text-slate-500 opacity-60 italic text-xs block mb-4' },
+    { text: '// building_brands_beyond.tsx', color: 'text-slate-500 opacity-60 italic text-[10px] sm:text-xs block mb-4' },
     { text: 'export default function ', color: 'text-[#ccb8b8]' },
     { text: 'Success', color: 'text-[#facc15]' },
     { text: '() {', color: 'text-[#ebd4d4]' },
@@ -92,7 +92,7 @@ const CodeTyper = () => {
   ];
 
   return (
-    <div className="text-sm">
+    <div className="text-xs sm:text-sm">
       <TypingAnimation content={content} />
     </div>
   );
@@ -216,16 +216,16 @@ export default function Home() {
       <main className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
 
         <div className="max-w-screen-xl mx-auto px-6 md:px-12 relative z-20">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
 
             {/* Left Side: Content */}
             <div className="flex-1 max-w-2xl text-left">
               <FadeIn delay={100}>
-                <h1 className="font-bold tracking-tight text-slate-900 leading-[0.9] mb-8">
-                  <div className="flex flex-col gap-2">
-                    <span className="text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] block">Crafting</span>
-                    <span className="font-[family-name:var(--font-pinyon)] font-normal text-slate-400 text-[5.5rem] md:text-[6.5rem] lg:text-[7.5rem] xl:text-[8rem] relative -ml-4 transform -rotate-2 block w-fit">Digital</span>
-                    <span className="text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] text-orange-500 block">Masterpieces.</span>
+                <h1 className="font-bold tracking-tight text-slate-900 leading-[1] md:leading-[0.9] mb-8">
+                  <div className="flex flex-col gap-1 md:gap-2">
+                    <span className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] block">Crafting</span>
+                    <span className="font-[family-name:var(--font-pinyon)] font-normal text-slate-400 text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[7.5rem] xl:text-[8rem] relative -ml-1 md:-ml-4 transform -rotate-1 md:-rotate-2 block w-fit py-1 md:py-0">Digital</span>
+                    <span className="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] text-orange-500 block">Masterpieces.</span>
                   </div>
                 </h1>
               </FadeIn>
@@ -239,17 +239,17 @@ export default function Home() {
               </FadeIn>
 
               <FadeIn delay={500}>
-                <div className="flex flex-wrap items-center gap-4 md:gap-6">
-                  <Link href="/start-project" className="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold rounded-full overflow-hidden shadow-xl shadow-orange-500/20 hover:shadow-2xl hover:shadow-orange-500/40 transition-all hover:-translate-y-1">
+                <div className="flex flex-row items-center gap-2 sm:gap-4 md:gap-6 w-full mt-4 sm:mt-0">
+                  <Link href="/start-project" className="group relative flex-[1.2] sm:flex-none flex items-center justify-center px-2 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold rounded-full overflow-hidden shadow-xl shadow-orange-500/20 hover:shadow-2xl hover:shadow-orange-500/40 transition-all hover:-translate-y-1 text-[13px] sm:text-base whitespace-nowrap">
                     <div className="absolute inset-0 w-full h-full bg-white/0 group-hover:bg-white/20 transition-colors duration-300"></div>
-                    <span className="relative z-10 flex items-center gap-2">
+                    <span className="relative z-10 flex items-center gap-1 sm:gap-2">
                       Start Project
-                      <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </span>
                   </Link>
-                  <Link href="/work" className="group px-8 py-4 bg-white border border-slate-200 text-slate-900 font-bold rounded-full hover:bg-slate-50 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md flex items-center gap-2">
+                  <Link href="/work" className="group flex-1 sm:flex-none flex items-center justify-center px-2 sm:px-8 py-3.5 sm:py-4 bg-white border border-slate-200 text-slate-900 font-bold rounded-full hover:bg-slate-50 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md gap-1 sm:gap-2 text-[13px] sm:text-base whitespace-nowrap">
                     View Work
-                    <div className="w-2 h-2 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"></div>
                   </Link>
                 </div>
               </FadeIn>
@@ -284,7 +284,7 @@ export default function Home() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-8 md:p-10 min-h-[320px] relative font-mono text-sm leading-relaxed">
+                  <div className="p-5 sm:p-8 md:p-10 min-h-[260px] md:min-h-[320px] relative font-mono text-sm leading-relaxed overflow-hidden">
                     <CodeTyper />
 
                     {/* Glowing Effect */}
@@ -293,13 +293,13 @@ export default function Home() {
                 </div>
 
                 {/* Floating Element: Growth */}
-                <div className="absolute -bottom-8 -left-8 md:-left-12 bg-white p-4 md:p-6 rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] flex items-center gap-5 animate-float-delayed z-30">
-                  <div className="w-14 h-14 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-500">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                <div className="absolute -bottom-4 -left-2 sm:-bottom-8 sm:-left-8 md:-left-12 bg-white p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] flex items-center gap-3 md:gap-5 animate-float-delayed z-30">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-orange-50 flex items-center justify-center text-orange-500 flex-shrink-0">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-0.5">Growth</div>
-                    <div className="text-3xl font-black text-slate-900 tracking-tight flex items-center">
+                    <div className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-0.5">Growth</div>
+                    <div className="text-xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-center">
                       +<Counter end={128} suffix="%" />
                     </div>
                   </div>
@@ -334,14 +334,14 @@ export default function Home() {
               </FadeIn>
 
               <FadeIn delay={100}>
-                <h2 className="text-5xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-bold text-white mb-12 leading-[1] tracking-tighter">
+                <h2 className="text-[2.75rem] sm:text-5xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-bold text-white mb-12 leading-[1.1] md:leading-[1] tracking-tighter">
                   {/* Outlined / Blueprint Text style */}
                   <span className="block text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
                     Architecting
                   </span>
                   {/* Filled Gradient Text */}
-                  <span className="block -mt-2 sm:-mt-4 md:-mt-6 pb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-200 to-orange-600 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.2)]">
-                    Digital Legacies.
+                  <span className="block -mt-1 sm:-mt-2 md:-mt-6 pb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-200 to-orange-600 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.2)]">
+                    Digital <br className="md:hidden" /> Legacies.
                   </span>
                 </h2>
               </FadeIn>
@@ -380,17 +380,17 @@ export default function Home() {
             {/* Card 1: Web Development (The Master Flagship) */}
             <div className="md:col-span-6 lg:col-span-8 group">
               <FadeIn delay={100} className="h-full">
-                <div className="h-full relative bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 md:p-12 overflow-hidden transition-all duration-700 hover:border-orange-500/30 hover:shadow-[0_0_100px_-20px_rgba(249,115,22,0.15)] flex flex-col lg:flex-row gap-12 items-center">
+                <div className="h-full relative bg-[#0A0A0B] border border-white/[0.08] rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 overflow-hidden transition-all duration-700 hover:border-orange-500/30 hover:shadow-[0_0_100px_-20px_rgba(249,115,22,0.15)] flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
                   {/* Subtle Grain Overlay */}
                   <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
 
-                  <div className="flex-1 space-y-8 relative z-10">
-                    <div className="w-20 h-20 rounded-3xl bg-orange-500/10 flex items-center justify-center text-orange-500 border border-orange-500/20 group-hover:scale-110 transition-transform duration-700">
-                      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                  <div className="flex-1 space-y-6 md:space-y-8 relative z-10 w-full">
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-orange-500/10 flex items-center justify-center text-orange-500 border border-orange-500/20 group-hover:scale-110 transition-transform duration-700">
+                      <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                     </div>
                     <div>
-                      <h3 className="text-4xl font-bold text-white mb-4 tracking-tight">Full-Stack <br />Aesthetics</h3>
-                      <p className="text-slate-400 leading-relaxed text-lg font-medium max-w-sm">
+                      <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Full-Stack <br />Aesthetics</h3>
+                      <p className="text-slate-400 leading-relaxed text-base md:text-lg font-medium max-w-sm">
                         High-performance engineering meet world-class design. We build frameworks that scale to infinity.
                       </p>
                     </div>
@@ -403,11 +403,11 @@ export default function Home() {
 
                   {/* Cinematic Code Visual */}
                   <div className="flex-1 w-full relative">
-                    <div className="relative z-10 w-full bg-[#050505] rounded-[2rem] p-8 font-mono text-[13px] border border-white/10 shadow-2xl group-hover:translate-y-[-10px] transition-transform duration-700">
-                      <div className="flex gap-2 mb-6">
-                        <div className="w-3 h-3 rounded-full bg-orange-500/40"></div>
-                        <div className="w-3 h-3 rounded-full bg-white/10"></div>
-                        <div className="w-3 h-3 rounded-full bg-white/10"></div>
+                    <div className="relative z-10 w-full bg-[#050505] rounded-2xl md:rounded-[2rem] p-6 md:p-8 font-mono text-[11px] md:text-[13px] border border-white/10 shadow-2xl group-hover:translate-y-[-10px] transition-transform duration-700">
+                      <div className="flex gap-2 mb-4 md:mb-6">
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-orange-500/40"></div>
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-white/10"></div>
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-white/10"></div>
                       </div>
                       <div className="space-y-3 opacity-80">
                         <TypingAnimation speed={40} content={[
@@ -434,14 +434,14 @@ export default function Home() {
 
             <div className="md:col-span-6 lg:col-span-4 h-full group">
               <FadeIn delay={200} className="h-full">
-                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 hover:border-blue-500/30 transition-all duration-700 flex flex-col justify-between overflow-hidden">
+                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 hover:border-blue-500/30 transition-all duration-700 flex flex-col justify-between overflow-hidden">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full blur-[80px] -mr-20 -mt-20 group-hover:bg-blue-600/10 transition-colors"></div>
 
                   <div className="relative z-10">
-                    <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-8 border border-blue-500/20 text-blue-400 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-500 ease-out">
-                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 md:mb-8 border border-blue-500/20 text-blue-400 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-500 ease-out">
+                      <svg className="w-7 h-7 md:w-8 md:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                     </div>
-                    <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">Psychometric <br />Interfaces</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Psychometric <br />Interfaces</h3>
                     <p className="text-slate-400 leading-relaxed text-base font-medium">
                       Interfaces that breathe. We design for instinct, ensuring every click feels like a natural extension of the user.
                     </p>
@@ -460,10 +460,10 @@ export default function Home() {
             {/* Card 3: SEO (The Detail Card) */}
             <div className="md:col-span-3 lg:col-span-3 h-full group">
               <FadeIn delay={300} className="h-full">
-                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 hover:border-emerald-500/30 transition-all duration-700 flex flex-col justify-between">
+                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 hover:border-emerald-500/30 transition-all duration-700 flex flex-col justify-between">
                   <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-8 border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
-                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-6 md:mb-8 border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
+                      <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">Omnipresence</h3>
                     <p className="text-slate-500 text-sm leading-relaxed font-medium">
@@ -478,10 +478,10 @@ export default function Home() {
             {/* Card 4: Strategy (The Minimalist Card) */}
             <div className="md:col-span-3 lg:col-span-3 h-full group">
               <FadeIn delay={400} className="h-full">
-                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[3rem] p-10 hover:border-amber-500/30 transition-all duration-700 flex flex-col justify-between">
+                <div className="relative h-full bg-[#0A0A0B] border border-white/[0.08] rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 hover:border-amber-500/30 transition-all duration-700 flex flex-col justify-between">
                   <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-8 border border-amber-500/20 text-amber-500">
-                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-amber-500/10 flex items-center justify-center mb-6 md:mb-8 border border-amber-500/20 text-amber-500">
+                      <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">Strategy</h3>
                     <p className="text-slate-500 text-sm leading-relaxed font-medium">
@@ -498,16 +498,16 @@ export default function Home() {
             {/* Card 5: Digital Growth (The "God-Ray" Vibrant Card) */}
             <div className="md:col-span-6 lg:col-span-6 h-full group">
               <FadeIn delay={500} className="h-full">
-                <div className="relative h-full bg-gradient-to-br from-orange-600 via-orange-700 to-amber-900 border border-white/20 rounded-[3rem] p-12 text-white hover:scale-[1.02] transition-all duration-700 flex flex-col justify-between min-h-[350px] overflow-hidden shadow-[0_20px_60px_-15px_rgba(249,115,22,0.4)]">
+                <div className="relative h-full bg-gradient-to-br from-orange-600 via-orange-700 to-amber-900 border border-white/20 rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 text-white hover:scale-[1.02] transition-all duration-700 flex flex-col justify-between min-h-[300px] md:min-h-[350px] overflow-hidden shadow-[0_20px_60px_-15px_rgba(249,115,22,0.4)]">
                   {/* Dynamic Mesh Shimmers */}
                   <div className="absolute -top-40 -left-40 w-96 h-96 bg-white/20 rounded-full blur-[100px] animate-pulse-slow"></div>
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] pointer-events-none"></div>
 
                   <div className="relative z-10">
-                    <div className="w-20 h-20 rounded-3xl bg-white/10 backdrop-blur-xl flex items-center justify-center mb-10 border border-white/20">
-                      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4z" /></svg>
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-white/10 backdrop-blur-xl flex items-center justify-center mb-6 md:mb-10 border border-white/20">
+                      <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4z" /></svg>
                     </div>
-                    <h3 className="text-4xl font-bold mb-4 tracking-tighter">Aggressive <br />Scale</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tighter">Aggressive <br />Scale</h3>
                     <p className="text-orange-50 text-lg leading-relaxed opacity-90 font-medium max-w-sm">
                       We don’t just market; we conquer. Data-backed strategies to skyrocket your conversion.
                     </p>

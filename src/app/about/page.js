@@ -6,13 +6,20 @@ import Link from 'next/link';
 
 export default function About() {
     const [scrolled, setScrolled] = useState(false);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
+        const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
     }, []);
 
     return (
@@ -24,9 +31,22 @@ export default function About() {
             <main className="relative pt-32 px-6 md:px-12 pb-20">
 
                 {/* Decorative Backgrounds */}
-                <div className="absolute top-0 left-0 w-full h-screen pointer-events-none overflow-hidden -z-10">
-                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 blur-[120px] rounded-full"></div>
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 blur-[100px] rounded-full"></div>
+                <div className="fixed inset-0 pointer-events-none -z-10">
+                    {/* Base Faint Grid */}
+                    <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+
+                    {/* Dynamic Spotlight Grid - Reveals grid around cursor */}
+                    <div
+                        className="absolute inset-0 bg-grid-pattern opacity-[0.08]"
+                        style={{
+                            maskImage: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`,
+                            WebkitMaskImage: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`
+                        }}
+                    ></div>
+
+                    {/* Floating Orbs */}
+                    <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-500/5 blur-[120px] rounded-full animate-float-slow"></div>
+                    <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-amber-500/5 blur-[100px] rounded-full animate-float-delayed"></div>
                 </div>
 
                 <div className="max-w-screen-xl mx-auto">
@@ -36,10 +56,10 @@ export default function About() {
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-100 text-orange-600 text-xs font-bold tracking-widest uppercase mb-6">
                             Who We Are
                         </div>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 whitespace-nowrap">
+                        <h1 className="text-[2.5rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 whitespace-normal md:whitespace-nowrap leading-[1.1] md:leading-tight">
                             We Craft <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Digital</span> Experiences.
                         </h1>
-                        <p className="text-lg text-slate-600 leading-relaxed">
+                        <p className="text-base sm:text-lg text-slate-600 leading-relaxed px-2 md:px-0">
                             BRNDX partners with ambitious brands to deliver high-performance websites, strategic digital marketing, and multimedia solutions that create measurable impact.
                         </p>
                     </div>
@@ -95,8 +115,8 @@ export default function About() {
                             <span className="inline-block py-1.5 px-4 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-300/30 text-orange-600 font-bold tracking-wider uppercase text-[11px] mb-6 backdrop-blur-sm">
                                 Why Choose BRNDX
                             </span>
-                            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">
-                                Built Different. <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-500 to-orange-500 text-nowrap">Built Better.</span>
+                            <h2 className="text-[2.5rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1] md:leading-tight">
+                                Built Different. <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-500 to-orange-500 whitespace-normal sm:whitespace-nowrap">Built Better.</span>
                             </h2>
                         </div>
 
